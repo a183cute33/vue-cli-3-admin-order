@@ -1,8 +1,18 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+ <div id="app">
+  <header id="header">
+    <div class="container">
+      <div class="logo">Shoptime</div>
+      <div class="menu">
+        <router-link :to="'Home'" class="active">HOME</router-link>
+        <router-link :to="'Order'">ORDERS</router-link>
+        <router-link :to="'Product'">PRODUCT</router-link>
+      </div>
+      <div class="admin">ADMIN</div>
+    </div>
+  </header>
+  <router-view/>
+</div>
 </template>
 
 <script>
@@ -12,12 +22,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
