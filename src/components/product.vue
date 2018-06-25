@@ -9,7 +9,7 @@
                     </label>
                 </div>
                 <div class="right">
-                    <a id="add">ADD NEW PRODUCT<i class="fas fa-plus"></i></a>
+                    <a id="add" @click="add">ADD NEW PRODUCT<i class="fas fa-plus"></i></a>
                 </div>
             </div>
             <table class="table-list">
@@ -218,7 +218,7 @@
         <div class="content">
             <div class="title">
                 ADD NEW PRODUCT
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times" @click="close"></i>
             </div>
             <div class="main">
                 <div class="left">
@@ -254,6 +254,8 @@
                             <span>Size</span>
                             <select>
                                 <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
                             </select>
                         </div>
                         <div class="set">
@@ -265,7 +267,7 @@
                             <input value="$15">
                         </div>
                     </div>
-                    <a class="add" @click="boxAdd($event)">ADD NEW SPECIFICATION<i class="fas fa-plus"></i></a>
+                    <a class="add">ADD NEW SPECIFICATION<i class="fas fa-plus"></i></a>
                 </div>
                 <div class="bottom">
                     <button>PUBLISH</button>
@@ -279,16 +281,30 @@
     </div>
 </template>
 <script>
+$(function() {
+  var $box = $("#box");
+  $box.find(".add").click(function() {
+    var $tmp = $(this)
+      .prev()
+      .clone();
+    $tmp.find("input").val("");
+    $tmp
+      .find("select option")
+      .first()
+      .prop("selected");
+    $tmp.insertBefore($(this));
+  });
+});
 export default {
   name: "Product",
   methods: {
-    boxAdd(event) {
-        console.log(event);
-        alert();
-        var $tmp = $(event).prev().clone();
-        console.log($tmp);
-
-        $tmp.insertBefort($(event));
+    add() {
+      var $box = $("#box");
+      $box.addClass("show");
+    },
+    close() {
+      var $box = $("#box");
+      $box.removeClass("show");
     }
   }
 };
